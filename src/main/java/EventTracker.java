@@ -12,17 +12,32 @@ public class EventTracker implements Tracker {
     }
 
     synchronized public static EventTracker getInstance() {
-        return null;
+        return INSTANCE;
     }
 
     synchronized public void push(String message) {
+        Integer count = tracker.containsKey(message) ? tracker.get(message) : 0;
+        count++;
+        tracker.put(message, count);
     }
 
     synchronized public Boolean has(String message) {
-        return null;
+        if (tracker.containsKey(message) && tracker.get(message) > 0) {
+            return true;
+        }
+        return false;
     }
 
     synchronized public void handle(String message, EventHandler e) {
+        e.handle();
+        Integer count = tracker.containsKey(message) ? tracker.get(message) : 0;
+        count--;
+        tracker.put(message, count);
+
+    }
+
+    public Map<String, Integer> tracker() {
+        return this.tracker;
     }
 
     // Do not use this. This constructor is for tests only
@@ -30,4 +45,6 @@ public class EventTracker implements Tracker {
     EventTracker(Map<String, Integer> tracker) {
         this.tracker = tracker;
     }
+
+
 }

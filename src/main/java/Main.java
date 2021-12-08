@@ -6,9 +6,13 @@ public class Main {
     // DO NOT MODIFY THIS CLASS!
     public static void main(String[] args) {
         Stream.of(
-            // You may add more listeners if you would like once all tests are passing
-            new EventListener("apple", "I love macbooks"),
-            new EventListener("java", "I could go for some coffee")
+                // You may add more listeners if you would like once all tests are passing
+                new EventListener("apple", "I love macbooks"),
+                new EventListener("java", "I could go for some coffee"),
+                new EventListener("code", "I love to code"),
+                new EventListener("leon", "A really funny guy"),
+                new EventListener("kris","A really wise coder"),
+                new EventListener("dolio", "I cool coder/rapper")
         ).forEach(Thread::start);
 
         System.out.println("Start typing messages to the console now. Enter \"quit\" to exit the program");
